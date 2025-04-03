@@ -23,8 +23,6 @@ INSERT INTO Lessons(title, course, begining, ending) VALUES
 ('Урок 1. Введение', 2,         '2026-02-02 18:30:00', '2026-05-01 19:30:00'),
 ('Урок 2. Функции', 2,          '2026-02-04 18:30:00', '2026-05-01 19:30:00');
 
-select * from users;
-
 INSERT INTO TeachersCourses(user_id, course_id) VALUES
 (2, 1),
 (3, 1),
