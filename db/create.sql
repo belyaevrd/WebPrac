@@ -1,4 +1,4 @@
-CREATE TYPE role_type as ENUM('student', 'teacher');
+CREATE TYPE role_type as ENUM('Student', 'Teacher');
 
 CREATE TABLE IF NOT EXISTS Users (
        user_id  SERIAL PRIMARY KEY,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Courses (
        course_id    SERIAL PRIMARY KEY,
        name         VARCHAR(100) NOT NULL,
-       description  TEXT NOT NULL
+       description  TEXT
 );
 
 CREATE TABLE IF NOT EXISTS Lessons (

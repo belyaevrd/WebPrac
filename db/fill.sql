@@ -1,11 +1,11 @@
 INSERT INTO Users(login, fullName, role, password) VALUES
-('login', 'Name', 'student', 'password'),
-('a.gerasimov', 'Artur Gerasimov', 'teacher', 'ag1234'),
-('m.zhukov',    'Maksim Zhukov', 'teacher', 'mz1234'),
-('t.kuznecova', 'Tatyana Kuznecova', 'teacher', 'tk1234'),
-('e.alekseeva', 'Evgeniya Alekseeva', 'student', 'ea1234'),
-('a.volkova',   'Alina Volkova', 'student', 'av1234'),
-('n.egorov',    'Nikolay Egorov', 'student', 'ne1234');
+('login', 'Name', 'Student', 'password'),
+('a.gerasimov', 'Artur Gerasimov', 'Teacher', 'ag1234'),
+('m.zhukov',    'Maksim Zhukov', 'Teacher', 'mz1234'),
+('t.kuznecova', 'Tatyana Kuznecova', 'Teacher', 'tk1234'),
+('e.alekseeva', 'Evgeniya Alekseeva', 'Student', 'ea1234'),
+('a.volkova',   'Alina Volkova', 'Student', 'av1234'),
+('n.egorov',    'Nikolay Egorov', 'Student', 'ne1234');
 
 INSERT INTO Courses(name, description) VALUES
 ('Изучение C', 'Курс по языку программирования C'),
