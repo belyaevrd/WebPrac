@@ -36,6 +36,17 @@ public class DAOTests {
     private TeachersCoursesDAO teachersCoursesDAO;
 
     @Test
+    public void testGetByLogin() {
+        User users = userDAO.getByLogin("m.zhukov");
+        assertNotNull(users);
+        assertEquals("Maksim Zhukov", users.getName());
+        assertEquals(Teacher, users.getRole());
+        assertEquals("mz1234", users.getPassword());
+        User users2 = userDAO.getByLogin("admin");
+        assertNull(users2);
+    }
+
+    @Test
     public void testGetUsersByRole() {
         Collection<User> teachers = userDAO.getUsersByRole(Teacher);
         assertEquals(3, teachers.size());

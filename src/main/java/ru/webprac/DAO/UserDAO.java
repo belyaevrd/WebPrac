@@ -9,12 +9,28 @@ import org.springframework.stereotype.Repository;
 import ru.webprac.classes.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Repository
 public class UserDAO extends BaseDAO<User, Long> {
     public UserDAO() {
         super(User.class);
+    }
+
+    public User getByLogin(@NonNull String login) {
+        User result;
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query<User> query = session.createQuery(
+                    "from User where login = :login", User.class)
+                    .setParameter("login", login);
+            result = query.getSingleResult();
+        } catch (Exception e) {
+            result = null;
+        }
+        return result;
     }
 
     public Collection<User> getUsersByRole(UserRole role) {
