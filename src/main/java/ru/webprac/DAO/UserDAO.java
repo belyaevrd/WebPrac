@@ -22,11 +22,12 @@ public class UserDAO extends BaseDAO<User, Long> {
     public User getByLogin(@NonNull String login) {
         User result;
         try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
+            Transaction tr = session.beginTransaction();
             Query<User> query = session.createQuery(
                     "from User where login = :login", User.class)
                     .setParameter("login", login);
             result = query.getSingleResult();
+            tr.commit();
         } catch (Exception e) {
             result = null;
         }
@@ -46,9 +47,32 @@ public class UserDAO extends BaseDAO<User, Long> {
         return result;
     }
 
+    public Collection<Course> getCoursesByLogin(@NonNull String login) {
+        Collection<Course> result;
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tr = session.beginTransaction();
+            User user = getByLogin(login);
+            Query<Course> courseQuery;
+            if (user.getRole() == UserRole.Student) {
+                courseQuery = session.createQuery(
+                        "select sc.course from StudentsCourses sc where sc.student = :user", Course.class
+                ).setParameter("user", user);
+            } else {
+                courseQuery = session.createQuery(
+                        "select tc.course from TeachersCourses tc where tc.teacher = :user", Course.class
+                ).setParameter("user", user);
+            }
+            result = courseQuery.getResultList();
+
+            tr.commit();
+        }
+        return result;
+    }
+
     public Collection<Lesson> getTimetable(@NonNull User user, @Nullable LocalDateTime start, @Nullable LocalDateTime end) {
         Collection<Lesson> result;
         try (Session session = sessionFactory.openSession()) {
+            Transaction tr = session.beginTransaction();
             Query<Course> courseQuery;
             Collection<Course> userCourses;
             if (user.getRole() == UserRole.Student) {
@@ -74,6 +98,7 @@ public class UserDAO extends BaseDAO<User, Long> {
                 query.setParameter("start", start);
             }
             result = query.getResultList();
+            tr.commit();
         }
         return result;
     }
