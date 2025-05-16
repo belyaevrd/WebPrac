@@ -1,5 +1,5 @@
 INSERT INTO Users(login, fullName, role, password) VALUES
-('login', 'Name', 'Student', 'password'),
+('admin', 'Admin', 'Teacher', 'admin'),
 ('a.gerasimov', 'Artur Gerasimov', 'Teacher', 'ag1234'),
 ('m.zhukov',    'Maksim Zhukov', 'Teacher', 'mz1234'),
 ('t.kuznecova', 'Tatyana Kuznecova', 'Teacher', 'tk1234'),
@@ -32,7 +32,7 @@ INSERT INTO TeachersCourses(user_id, course_id) VALUES
 
 INSERT INTO StudentsCourses(user_id, course_id) VALUES
 (5, 1),
-(1, 1),
-(1, 2),
+(7, 1),
+(7, 2),
 (5, 3),
 (6, 3);
