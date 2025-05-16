@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Удаление слушателя</title>
+</head>
+
+<body>
+<div th:replace="~{general :: page-header}"></div>
+<h2>Удаление слушателя</h2>
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-start pt-4">
+  <!-- Контейнер колонки (5/12 ширины на средних экранах) -->
+  <div class="col-md-5 mb-4 mb-md-0">
+
+    <!-- Карточка с тенью -->
+    <div class="card shadow">
+
+      <!-- Тело карточки -->
+      <div class="card-body">
+
+        <!-- Заголовок формы -->
+        <h3 class="card-title mb-4">Выбор слушателя для удаления</h3>
+
+        <!-- Форма добавления нового слушателя -->
+        <form th:action="@{/courses/{id}/delStudent(id=${courseId})}" method="post">
+
+          <div class="alert alert-danger" th:if="${error}" >
+            <span th:text="${error}"></span>
+          </div>
+
+          <input type="hidden" name="courseId" th:value="courseId">
+          <!-- Поле для названия -->
+          <label for="studentLoginDel" class="form-label"></label>
+          <select class="form-select"
+                  id="studentLoginDel"
+                  name="studentLogin"
+                  required>
+            <option value="" disabled selected>Выберите пользователя</option>
+            <option th:each="student : ${students}"
+                    th:value="${student.getLogin()}"
+                    th:text="${student.getLogin()}"></option>
+          </select>
+
+          <!-- Кнопка отправки формы -->
+          <button type="submit" class="btn btn-primary w-100">
+            Удалить
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

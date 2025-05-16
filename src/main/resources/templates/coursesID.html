@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title th:text="${course.getName()}"></title>
+</head>
+
+<body>
+<div th:replace="~{general :: page-header}"></div>
+
+<h4 th:text="'Страница курса &quot;' + ${course.getName()} + '&quot;'"></h4>
+
+<div class="container">
+  <div class="alert alert-danger" th:if="${error}" >
+    <span th:text="${error}"></span>
+  </div>
+
+  <div class="row g-0 justify-content-between align-items-start">
+
+    <div class="col-md-10 mb-4 mb-md-0">
+        <p>
+          <a th:if="${manageRools}"
+             th:href="@{/courses/{id}/update(id=${course.getId()})}" class="btn btn-primary float-right mb-3">
+            Изменить информацию о курсе
+          </a>
+          <div th:if="${subStudent != null}">
+            <form th:action="@{/courses/{id}/addStudent(id=${course.getId()})}"
+                  method="post"
+                  th:if="${subStudent}">
+              <input type="hidden" th:value="${session.user.getLogin()}" name="studentLogin"></input>
+              <button type="submit" class="btn btn-success float-right mb-3">
+                <i class="bi bi-bookmark-plus"></i> Подписаться на курс
+              </button>
+            </form>
+
+            <form th:action="@{/courses/{id}/delStudent(id=${course.getId()})}"
+                  method="post"
+                  th:if="${!subStudent}">
+              <input type="hidden" th:value="${session.user.getLogin()}" name="studentLogin"></input>
+              <button type="submit" class="btn btn-danger float-right mb-3">
+                <i class="bi bi-bookmark-dash"></i> Отписаться от курса
+              </button>
+            </form>
+          </div>
+      </p>
+        <p th:if="${course.getDescription() != null}">
+          <span><strong>Описание: </strong></span>
+          <span th:text="${subStudent}"></span>
+        </p>
+        <p>
+          <span th:text="${course.getDescription()}"></span>
+        </p>
+        <!-- Занятия -->
+        <p th:if="${lessons.size() != 0}">
+          <strong>Занятия:</strong>
+        </p>
+        <p>
+        <table class="table-bordered">
+          <thead class="table-group-divider">
+          <tr th:if="${lessons.size() != 0}">
+            <th>Название</th>
+            <th>Начало</th>
+            <th>Конец</th>
+          </tr>
+          </thead>
+          <tbody>
+          <th:block th:each="lesson, iter : ${lessons}">
+            <tr>
+              <td th:text="${lesson.getTitle()}"></td>
+              <td th:text="${lesson.getBegin()}"></td>
+              <td th:text="${lesson.getEnd()}"></td>
+            </tr>
+          </th:block>
+          </tbody>
+        </table>
+        </p>
+        <p>
+          <a th:if="${manageRools}"
+             th:href="@{/courses/{id}/addLesson(id=${course.getId()})}" class="btn btn-success float-right mb-3">
+            Добавить новое занятие
+          </a>
+          <a th:if="${manageRools}"
+             th:href="@{/courses/{id}/delLesson(id=${course.getId()})}" class="btn btn-danger float-right mb-3">
+            Удалить занятие
+          </a>
+        </p>
+    </div>
+
+  <!-- Преподаватели и слушатели -->
+    <div class="col-md-2 mb-4 mb-md-0">
+      <p th:if="${teachers.size() != 0}">
+        <strong>Преподаватели:</strong>
+      </p>
+      <p>
+        <table class="table-bordered">
+        <thead class="table-group-divider">
+        <tr th:if="${teachers.size() != 0}">
+          <th>Логин</th>
+          <th>Имя</th>
+        </tr>
+        </thead>
+        <tbody>
+          <th:block th:each="teacher, iter : ${teachers}">
+            <tr>
+              <td>
+                <a th:text="${teacher.getLogin()}" th:href="@{/users/{id}(id=${teacher.getId()})}"></a>
+              </td>
+              <td th:text="${teacher.getName()}"></td>
+            </tr>
+          </th:block>
+        </tbody>
+        </table>
+      </p>
+      <p>
+        <a th:if="${manageRools}"
+           th:href="@{/courses/{id}/addTeacher(id=${course.getId()})}" class="btn btn-success float-right mb-3">
+          Добавить нового преподавателя
+        </a>
+        <a th:if="${manageRools}"
+           th:href="@{/courses/{id}/delTeacher(id=${course.getId()})}" class="btn btn-danger float-right mb-3">
+          Удалить преподавателя
+        </a>
+      </p>
+
+      <p th:if="${students.size() != 0}">
+        <strong>Слушатели:</strong>
+      </p>
+      <p>
+        <table class="table-bordered">
+          <thead class="table-group-divider">
+          <tr th:if="${students.size() != 0}">
+            <th>Логин</th>
+            <th>Имя</th>
+          </tr>
+          </thead>
+          <tbody>
+          <th:block th:each="student, iter : ${students}">
+            <tr>
+              <td>
+                <a th:text="${student.getLogin()}" th:href="@{/users/{id}(id=${student.getId()})}"></a>
+              </td>
+              <td th:text="${student.getName()}"></td>
+            </tr>
+          </th:block>
+          </tbody>
+        </table>
+      </p>
+      <p>
+        <a th:if="${manageRools}"
+           th:href="@{/courses/{id}/addStudent(id=${course.getId()})}" class="btn btn-success float-right mb-3">
+          Добавить нового слушателя
+        </a>
+        <a th:if="${manageRools}"
+           th:href="@{/courses/{id}/delStudent(id=${course.getId()})}" class="btn btn-danger float-right mb-3">
+          Удалить слушателя
+        </a>
+      </p>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

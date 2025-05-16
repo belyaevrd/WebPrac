@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Расписание</title>
+</head>
+
+<body>
+<div th:replace="~{general :: page-header}"></div>
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-start pt-4">
+  <!-- Контейнер колонки (5/12 ширины на средних экранах) -->
+  <div class="col-md-5 mb-4 mb-md-0">
+
+    <!-- Карточка с тенью -->
+    <div class="card shadow">
+
+      <!-- Тело карточки -->
+      <div class="card-body">
+
+        <!-- Заголовок формы -->
+        <h3 class="card-title mb-4">Получение расписание</h3>
+
+        <!-- Форма добавления нового преподавателя -->
+        <form th:action="@{/timetable/show}" method="get" id="ttForm">
+
+          <div class="alert alert-danger" th:if="${error}" >
+            <span th:text="${error}"></span>
+          </div>
+
+          <label for="ttLogin" class="form-label"></label>
+          <select class="form-select"
+                  id="ttLogin"
+                  name="id"
+                  required>
+            <option value="" disabled selected>Выберите пользователя</option>
+            <option th:each="user : ${users}"
+                    th:value="${user.getId()}"
+                    th:text="${user.getLogin()}"></option>
+          </select>
+
+          <div class="mb-3">
+            <label for="lessonBegin" class="form-label">Начало</label>
+            <input type="datetime-local"
+                   class="form-control"
+                   id="lessonBegin"
+                   name="begin"
+                   step="1">
+          </div>
+
+          <div class="mb-3">
+            <label for="lessonEnd" class="form-label">Окончание</label>
+            <input type="datetime-local"
+                   class="form-control"
+                   id="lessonEnd"
+                   name="end"
+                   step="1">
+          </div>
+
+          <!-- Кнопка отправки формы -->
+          <button type="submit" class="btn btn-primary w-100">
+            Посмотреть расписание
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
