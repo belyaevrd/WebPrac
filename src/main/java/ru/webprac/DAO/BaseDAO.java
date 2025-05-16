@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Table;
-import javax.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.Collection;
 

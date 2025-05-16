@@ -1,8 +1,10 @@
 package ru.webprac.classes;
 
 import lombok.*;
+import org.hibernate.annotations.JavaType;
 import org.hibernate.annotations.Type;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import ru.webprac.util.EnumPSQL;
 
 
 @Getter
@@ -13,6 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
+@EqualsAndHashCode(of = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +31,7 @@ public class User {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Type(type = "ru.webprac.util.EnumPSQL")
+    @Type(EnumPSQL.class)
     @Column(name = "role", nullable = false)
     @NonNull
     private UserRole role;

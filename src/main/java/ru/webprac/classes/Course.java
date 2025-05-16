@@ -1,6 +1,6 @@
 package ru.webprac.classes;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter

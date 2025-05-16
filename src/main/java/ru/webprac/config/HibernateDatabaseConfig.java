@@ -24,7 +24,7 @@ public class HibernateDatabaseConfig {
     @Value("${sql.password}")
     private String DB_PASSWORD;
 
-    @Bean
+    @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
@@ -32,7 +32,7 @@ public class HibernateDatabaseConfig {
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL10Dialect");
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         hibernateProperties.setProperty("connection_pool_size", "1");
 
         sessionFactory.setHibernateProperties(hibernateProperties);

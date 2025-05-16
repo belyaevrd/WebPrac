@@ -1,8 +1,7 @@
 package ru.webprac.classes;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import java.io.Serializable;
@@ -22,13 +21,13 @@ public class TeachersCourses implements Serializable {
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id", nullable = false)
-    @NotNull
+    @NonNull
     private User teacher;
 
     @ManyToOne
     @MapsId("courseId")
     @JoinColumn(name = "course_id", nullable = false)
-    @NotNull
+    @NonNull
     private Course course;
 
     public TeachersCourses(User teacher, Course course) {
