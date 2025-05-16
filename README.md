@@ -3,6 +3,7 @@
 ### [Сценарии использования](#сценарии-использования-1)
 ### [Схема базы данных](#схема-базы-данных-1)
 ### [Второй этап](#второй-этап-1)
+### [Третий этап](#третий-этап-1)
 
 ---
 ## Страницы:
@@ -137,3 +138,8 @@
 ![tests-results-2](images/tests-result-stage2.png)
 
 ![coverage](images/coverage-stage2.png)
+---
+## Третий этап:
+[Реализация контроллеров](src/main/java/ru/webprac/controllers)
+
+[JSP-страницы](src/main/resources/templates)
