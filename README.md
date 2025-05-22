@@ -143,3 +143,5 @@
 [Реализация контроллеров](src/main/java/ru/webprac/controllers)
 
 [JSP-страницы](src/main/resources/templates)
+
+[Тестирование](src/test/java/ru/webprac/WebTest.java)
