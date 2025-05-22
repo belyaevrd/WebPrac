@@ -145,3 +145,7 @@
 [JSP-страницы](src/main/resources/templates)
 
 [Тестирование](src/test/java/ru/webprac/WebTest.java)
+
+### Результаты тестирования:
+![tests-results-3](images/tests-result-stage3.png)
+
