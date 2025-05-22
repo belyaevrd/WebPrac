@@ -63,11 +63,15 @@ public class CourseController {
                             Model model)
     {
         Course course = new Course(name);
-        if (description != null) {
+        if (description != null && !description.isEmpty()) {
             course.setDescription(description);
         }
         try {
             courseDAO.save(course);
+            User user = (User) session.getAttribute("user");
+            if (user != null) {
+                teachersCoursesDAO.save(new TeachersCourses(user, course));
+            }
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/error";
@@ -158,10 +162,10 @@ public class CourseController {
             redirectAttributes.addFlashAttribute("error", "Курс не найден.");
             return "redirect:/error";
         }
-        if (name != null) {
+        if (name != null && !name.isEmpty()) {
             updatedCourse.setName(name);
         }
-        if (description != null) {
+        if (description != null && !description.isEmpty()) {
             updatedCourse.setDescription(description);
         }
 

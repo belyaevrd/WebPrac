@@ -14,13 +14,13 @@
 <div class="col-md-10 mb-4 mb-md-0">
   <p>
     <span>Занятия пользователя </span>
-    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getLogin()}"></a>
+    <a id="user" th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getLogin()}"></a>
     <span> на заданный период (</span>
     <strong th:if="${begin != null}" th:text="${begin}"></strong>
-    <strong th:if="${begin == null}" th:text="-inf"></strong>
+    <strong th:if="${begin == null}">-inf</strong>
     <span>, </span>
     <strong th:if="${end != null}" th:text="${end}"></strong>
-    <strong th:if="${end == null}" th:text="+inf"></strong>
+    <strong th:if="${end == null}">+inf</strong>
     <span>):</span>
   </p>
   <table class="table-bordered">

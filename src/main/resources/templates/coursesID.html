@@ -22,7 +22,7 @@
 
     <div class="col-md-10 mb-4 mb-md-0">
         <p>
-          <a th:if="${manageRools}"
+          <a th:if="${manageRools}" id="updateCourse"
              th:href="@{/courses/{id}/update(id=${course.getId()})}" class="btn btn-primary float-right mb-3">
             Изменить информацию о курсе
           </a>
@@ -78,11 +78,11 @@
         </table>
         </p>
         <p>
-          <a th:if="${manageRools}"
+          <a th:if="${manageRools}" id="addLesson"
              th:href="@{/courses/{id}/addLesson(id=${course.getId()})}" class="btn btn-success float-right mb-3">
             Добавить новое занятие
           </a>
-          <a th:if="${manageRools}"
+          <a th:if="${manageRools}" id="delLesson"
              th:href="@{/courses/{id}/delLesson(id=${course.getId()})}" class="btn btn-danger float-right mb-3">
             Удалить занятие
           </a>
@@ -115,11 +115,11 @@
         </table>
       </p>
       <p>
-        <a th:if="${manageRools}"
+        <a th:if="${manageRools}" id="addTeacher"
            th:href="@{/courses/{id}/addTeacher(id=${course.getId()})}" class="btn btn-success float-right mb-3">
           Добавить нового преподавателя
         </a>
-        <a th:if="${manageRools}"
+        <a th:if="${manageRools}" id="delTeacher"
            th:href="@{/courses/{id}/delTeacher(id=${course.getId()})}" class="btn btn-danger float-right mb-3">
           Удалить преподавателя
         </a>
@@ -149,11 +149,11 @@
         </table>
       </p>
       <p>
-        <a th:if="${manageRools}"
+        <a th:if="${manageRools}" id="addStudent"
            th:href="@{/courses/{id}/addStudent(id=${course.getId()})}" class="btn btn-success float-right mb-3">
           Добавить нового слушателя
         </a>
-        <a th:if="${manageRools}"
+        <a th:if="${manageRools}" id="delStudent"
            th:href="@{/courses/{id}/delStudent(id=${course.getId()})}" class="btn btn-danger float-right mb-3">
           Удалить слушателя
         </a>

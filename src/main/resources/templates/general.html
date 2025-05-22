@@ -12,7 +12,7 @@
 <header class="bg-success" th:fragment="page-header">
     <nav class="navbar navbar-expand-sm navbar-light bg-success">
         <div class="container">
-            <a class="navbar-brand" href="/">Главная страница</a>
+            <a id="main_page" class="navbar-brand" href="/">Главная страница</a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -22,27 +22,27 @@
                 <!---Центральная часть-->
                 <ul class="navbar-nav m-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/courses}">Курсы</a>
+                        <a id="courses" class="nav-link" th:href="@{/courses}">Курсы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/teachers}">Преподаватели</a>
+                        <a id="teachers" class="nav-link" th:href="@{/teachers}">Преподаватели</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/timetable}">Расписание</a>
+                        <a id="timetable" class="nav-link" th:href="@{/timetable}">Расписание</a>
                     </li>
                 </ul>
                 <!---Правая часть-->
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                     <li class="nav-item" th:if="${session.user == null}">
-                        <a class="nav-link" th:href="@{/login}">Вход</a>
+                        <a id="login" class="nav-link" th:href="@{/login}">Вход</a>
                     </li>
                     <li class="nav-item dropdown" th:if="${session.user != null}">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                            th:text="${session.userName}"></a>
+                            th:text="${session.userName}" id="userName"></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" th:href="@{/profile}">Профиль</a></li>
+                            <li><a class="dropdown-item" th:href="@{/profile}" id="profile">Профиль</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" th:href="@{/logout}">Выход</a></li>
+                            <li><a class="dropdown-item" th:href="@{/logout}" id="logout">Выход</a></li>
                         </ul>
                     </li>
                 </ul>

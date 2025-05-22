@@ -19,7 +19,7 @@
         <span th:text="${error}"></span>
     </div>
     <a th:if="${session.user != null && session.user.getRole().getRoleStr() == 'Преподаватель'}"
-       th:href="@{/courses/add}" class="btn btn-success float-right mb-3">Добавить новый курс</a>
+       th:href="@{/courses/add}" id="addCourse" class="btn btn-success float-right mb-3">Добавить новый курс</a>
 
     <table class="table-bordered">
         <thead class="table-group-divider">
